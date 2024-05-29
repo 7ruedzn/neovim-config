@@ -5,7 +5,9 @@ local options = {
     javascript = {{"prettierd, prettier"}},
     css = {{"prettierd, prettier"}},
     html = {{"prettierd, prettier"}},
+    go = { "golines", "gofumpt", "goimports_reviser" },
   },
+
   format_on_save = {
     timeout_ms = 500,
     lsp_fallback = true,

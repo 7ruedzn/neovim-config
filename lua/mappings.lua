@@ -54,3 +54,9 @@ vim.keymap.set('n', '<space>ta', ':lua telescope.extensions.live_grep_ars.live_g
 
 --ZEN mode
 vim.keymap.set('n', '<space>tz', '<Cmd>ZenMode<CR>', { desc = "Toggle Zen Mode" })
+--TMUX keybindings
+
+vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Navigate window left on tmux" })
+vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Navigate window right on tmux" })
+vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Navigate window up on tmux" })
+vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Navigate window down on tmux" })

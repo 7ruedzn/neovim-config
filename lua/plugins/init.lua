@@ -1,10 +1,14 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre",
+    event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
   },
   {
     "neovim/nvim-lspconfig",
@@ -28,7 +32,7 @@ return {
       -- "rcarriga/nvim-notify",
     },
     config = function()
-      require "configs.custom.noice"
+      require "configs.noice"
     end,
   },
   {
@@ -69,14 +73,33 @@ return {
     opts = {}, -- for default options, refer to the configuration section for custom setup.
   },
   {
-    "folke/trouble.nvim",
-  },
-  {
-    "artemave/workspace-diagnostics.nvim",
-  },
-  {
     "folke/zen-mode.nvim",
     event = "VeryLazy",
+    config = function()
+      require "configs.noice"
+    end,
+  },
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end,
+  },
+  {
+    "saecki/crates.nvim",
+    ft = { "rust", "toml" },
+    dependencies = "hrsh7th/nvim-cmp",
+    config = function(_, opts)
+      local crates = require "crates"
+      crates.setup(opts)
+      crates.show()
+    end,
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
   {
     "folke/todo-comments.nvim",
@@ -99,23 +122,8 @@ return {
     "windwp/nvim-ts-autotag",
     event = "VeryLazy",
     config = function()
-      require "configs.custom.autotags"
+      require "configs.autotags"
     end,
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    -- dependencies = {
-    --   {
-    -- "nvim-telescope/telescope-live-grep-args.nvim",
-    -- This will not install any breaking changes.
-    -- For major updates, this must be adjusted manually.
-    -- version = "^1.0.0",
-    -- },
-    -- },
-    -- config = function()
-    -- require("telescope").load_extension("live_grep_args")
-    -- require "configs.custom.live_grep_args"
-    -- end
   },
   -- {
   --   "mg979/vim-visual-multi",
@@ -124,6 +132,13 @@ return {
   --
   --   end
   -- },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
   {
     "williamboman/mason.nvim",
     opts = {
@@ -153,6 +168,9 @@ return {
         "javascript",
         "typescript",
         "tsx",
+        "html-lsp",
+        "css-lsp",
+        "prettier",
       },
     },
   },
